@@ -1170,6 +1170,7 @@ GameObject:
   - component: {fileID: 979169501}
   - component: {fileID: 979169504}
   - component: {fileID: 979169505}
+  - component: {fileID: 979169506}
   - component: {fileID: 979169503}
   - component: {fileID: 979169502}
   m_Layer: 0
@@ -1260,7 +1261,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _orientationTransform: {fileID: 1680923170}
   _movementKey: 113
-  _movementSpeed: 30
+  _movementSpeed: 40
   _jumpKey: 32
   _jumpForce: 8
   _canJump: 1
@@ -1268,8 +1269,8 @@ MonoBehaviour:
   airMultiplier: 0.2
   _jumpDrag: 0.75
   _slideKey: 101
-  _slideMultiplier: 2
-  _slideDrag: 2
+  _slideMultiplier: 1.1
+  _slideDrag: 2.2
   _height: 1
   _groundLayer:
     serializedVersion: 2
@@ -1287,6 +1288,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f240dc62062dfa84b8f424b343cff2c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &979169506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 979169500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5216d524c4574e4ba0db040ace27504, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 4471126500177648367}
 --- !u!1 &1141121176
 GameObject:
   m_ObjectHideFlags: 0
@@ -2170,6 +2184,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4471126500177648366}
+  - component: {fileID: 4471126500177648367}
   m_Layer: 0
   m_Name: PlayerVisual
   m_TagString: Untagged
@@ -2255,6 +2270,28 @@ Transform:
   - {fileID: 862806536}
   m_Father: {fileID: 979169501}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &4471126500177648367
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3839161935326920788}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0f4d84c15e5637f459f5b80cd4203531, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!4 &4808846655665687152
 Transform:
   m_ObjectHideFlags: 0

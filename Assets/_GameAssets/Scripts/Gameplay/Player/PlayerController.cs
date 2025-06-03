@@ -4,6 +4,8 @@ using UnityEngine.Serialization;
 
 public class PlayerController : MonoBehaviour
 {
+    public event Action OnPlayerJumped;
+    
     [Header("References")]
     [SerializeField] private Transform _orientationTransform;
     
@@ -133,6 +135,8 @@ public class PlayerController : MonoBehaviour
     }
     private void SetPlayerJumping()
     {
+        OnPlayerJumped?.Invoke();
+        
         _rigidbody.linearVelocity = new Vector3(_rigidbody.linearVelocity.x, 0, _rigidbody.linearVelocity.z);
         _rigidbody.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
     }
