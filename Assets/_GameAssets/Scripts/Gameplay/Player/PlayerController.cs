@@ -36,6 +36,8 @@ public class PlayerController : MonoBehaviour
     private Vector2 _inputVector;
     private Vector3 _movementDirection;
     private StateController _stateController;
+
+    private float _startingJumpForce, _startingMovementSpeed;
     
     private bool _isSliding;
     private void Awake()
@@ -43,6 +45,8 @@ public class PlayerController : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody>();
         _rigidbody.constraints = RigidbodyConstraints.FreezeRotation;
         _stateController = GetComponent<StateController>();
+        _startingJumpForce = _jumpForce;
+        _startingMovementSpeed = _movementSpeed;
     }
 
     private void Update()
@@ -141,22 +145,50 @@ public class PlayerController : MonoBehaviour
         _rigidbody.AddForce(Vector3.up * _jumpForce, ForceMode.Impulse);
     }
 
-    private bool IsGrounded()
-    {
-        return Physics.Raycast(transform.position, Vector3.down, _height * 0.5f +0.2f, _groundLayer);
-    }
+   
+    #region HelperFunctions
+    
+        private bool IsGrounded()
+        {
+            return Physics.Raycast(transform.position, Vector3.down, _height * 0.5f +0.2f, _groundLayer);
+        }
+        
+        private void ResetJumping()
+        {
+            _canJump = true;
+        }
+        
+        private Vector3 GetMovementDirection()
+        {
+            return _movementDirection.normalized;
+        }
 
-    private void ResetJumping()
-    {
-        _canJump = true;
-    }
-    private Vector3 GetMovementDirection()
-    {
-        return _movementDirection.normalized;
-    }
+        private bool IsSliding()
+        {
+            return _isSliding;
+        }
 
-    private bool IsSliding()
-    {
-        return _isSliding;
-    }
+        public void SetMovementSpeed(float speed, float duration)
+        {
+            _movementSpeed += speed;
+            Invoke(nameof(ResetMovementSpeed),duration);
+        }
+
+        private void ResetMovementSpeed()
+        {
+            _movementSpeed = _startingMovementSpeed;
+        }
+
+        public void SetJumpForce(float jumpForce, float duration)
+        {
+            _jumpForce += jumpForce;
+            Invoke(nameof(ResetJumpForce), duration);
+        }
+
+        private void ResetJumpForce()
+        {
+            _jumpForce = _startingJumpForce;
+        }
+    #endregion
+   
 }
