@@ -31,6 +31,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _height;
     [SerializeField] private LayerMask _groundLayer;
     [SerializeField] private float _groundDrag;
+    
     private Rigidbody _rigidbody;
     
     private Vector2 _inputVector;
@@ -188,6 +189,11 @@ public class PlayerController : MonoBehaviour
         private void ResetJumpForce()
         {
             _jumpForce = _startingJumpForce;
+        }
+
+        public Rigidbody GetPlayerRigidbody()
+        {
+            return _rigidbody;
         }
     #endregion
    
