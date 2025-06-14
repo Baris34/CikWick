@@ -52,6 +52,11 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if (GameManager.Instance.GetCurrentGameState() != GameState.Play &&
+            GameManager.Instance.GetCurrentGameState() != GameState.Resume)
+        {
+            return;
+        }
         SetInputs();
         SetStates();
         SetPlayerDrag();
@@ -60,6 +65,11 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (GameManager.Instance.GetCurrentGameState() != GameState.Play &&
+            GameManager.Instance.GetCurrentGameState() != GameState.Resume)
+        {
+            return;
+        }
         SetPlayerMovement();
     }
 
@@ -107,7 +117,6 @@ public class PlayerController : MonoBehaviour
     }
     private void SetPlayerMovement()
     {
-        
         _movementDirection = _orientationTransform.right * _inputVector.x + _orientationTransform.forward * _inputVector.y;
         float forceMultiplier = _stateController.GetCurrentPlayerState() switch
         {
