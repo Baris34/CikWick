@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
     public Action<GameState> OnGameStateChanged;
 
+    [SerializeField] private WinLoseUI _winLoseUI;
     [SerializeField] private int _maxEggCount = 5;
     
     private GameState _currentGameState;
@@ -36,6 +37,7 @@ public class GameManager : MonoBehaviour
             //Todo: Win the game
             EggCollectUI.Instance.UpdateEggCompleted();
             ChangeGameState(GameState.GameOver);
+            _winLoseUI.OnGameWin();
         }
         EggCollectUI.Instance.UpdateEggCountText(_currentEggCount,_maxEggCount);
     }
