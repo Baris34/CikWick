@@ -25,20 +25,7 @@ public class PlayerHealthUI : MonoBehaviour
             _healthTransforms[i] = _playerHealthImages[i].gameObject.GetComponent<RectTransform>();
         }
     }
-
-    private void Update()
-    {
-        // For Testing Purposes
-        if(Input.GetKeyDown(KeyCode.O))
-        {
-            AnimateDamageForAll();
-        }
-        if(Input.GetKeyDown(KeyCode.P))
-        {
-            AnimateDamage();
-        }
-    }
-
+    
     public void AnimateDamage()
     {
         for (int i = 0; i < _playerHealthImages.Length; i++)
