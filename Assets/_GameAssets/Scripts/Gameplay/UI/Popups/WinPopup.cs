@@ -17,7 +17,6 @@ public class WinPopup : MonoBehaviour
     {
         _timerText.text = _timerUI.GetFinalTime();
         _oneMoreButton.onClick.AddListener(OneMoreButton_OnClick);
-
     }
 
     private void OneMoreButton_OnClick()
