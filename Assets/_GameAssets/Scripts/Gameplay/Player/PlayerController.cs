@@ -1,4 +1,5 @@
 using System;
+using _GameAssets.Scripts.Gameplay.Helpers;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -204,6 +205,22 @@ public class PlayerController : MonoBehaviour
         public Rigidbody GetPlayerRigidbody()
         {
             return _rigidbody;
+        }
+
+        public bool CanCatChase()
+        {
+            if(Physics.Raycast(transform.position,Vector3.down, out RaycastHit hit,_height * 0.5f + 0.2f, _groundLayer))
+            {
+                if (hit.collider.gameObject.layer  == LayerMask.NameToLayer(Consts.Layers.FLOOR_LAYER))
+                {
+                    return true;
+                }
+                else if (hit.collider.gameObject.layer == LayerMask.NameToLayer(Consts.Layers.GROUND_LAYER))
+                {
+                    return false;
+                }
+            }
+            return false;
         }
     #endregion
    

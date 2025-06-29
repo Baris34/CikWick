@@ -6,6 +6,12 @@
         {
             public const string GAME_SCENE = "GameScene";
         }
+
+        public struct Layers
+        {
+            public const string GROUND_LAYER = "Ground";
+            public const string FLOOR_LAYER = "Floor";
+        }
         public struct PlayerAnimations
         {
             public const string IS_MOVING = "IsMoving";
