@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private WinLoseUI _winLoseUI;
     [SerializeField] private int _maxEggCount = 5;
     [SerializeField] private HealthManager _healthManager;
+    [SerializeField] private CatController _catController;
+    [SerializeField] private PlayerHealthUI _playerHealthUI;
     [Header("Settings")]
     [SerializeField] private float _delay = 1f;
     
@@ -26,8 +28,13 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         _healthManager.OnGameOver += HealthManager_OnGameOver;
+        _catController.OnCatChase += CatController_OnCatChase;
     }
-
+    private void CatController_OnCatChase()
+    {
+        OnGameOver();
+        _playerHealthUI.AnimateDamageForAll();
+    }
     private void HealthManager_OnGameOver()
     {
         OnGameOver();
