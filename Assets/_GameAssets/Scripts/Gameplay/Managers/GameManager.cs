@@ -38,10 +38,9 @@ public class GameManager : MonoBehaviour
             OnGameOver();
             _playerHealthUI.AnimateDamageForAll();
             CameraShake.Instance.ShakeCamera(1f, 1f,0.2f);
+            AudioManager.Instance.Play(SoundType.CatSound);
             _isCatChase = true;
         }
-        
-
     }
     private void HealthManager_OnGameOver()
     {
@@ -51,6 +50,7 @@ public class GameManager : MonoBehaviour
     private void OnEnable()
     {
         ChangeGameState(GameState.Cutscene);
+        BackgroundMusic.Instance.PlayBackgroundMusic(true);
     }
 
     public void ChangeGameState(GameState newGameState)
