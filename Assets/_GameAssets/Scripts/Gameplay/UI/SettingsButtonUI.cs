@@ -19,6 +19,15 @@ public class SettingsButtonUI : MonoBehaviour
     [SerializeField] private Button _resumeButton;
     [SerializeField] private Button _mainMenuButton;
 
+    [Header("Sprites")]
+    [SerializeField] private Sprite _musicActiveSprite;
+    [SerializeField] private Sprite _musicPassiveSprite;
+    [SerializeField] private Sprite _soundActiveSprite;
+    [SerializeField] private Sprite _soundPassiveSprite;
+    
+    private bool _isMusicActive = true;
+    private bool _isSoundActive = true;
+    
     private Image _backgroundImage;
     private void Awake()
     {
@@ -26,13 +35,31 @@ public class SettingsButtonUI : MonoBehaviour
         _settingsPanel.transform.localScale = Vector3.zero;
         _settingsButton.onClick.AddListener(OnClick_SettingsButton);
         _resumeButton.onClick.AddListener(OnClick_ResumeButton);
+        _soundButton.onClick.AddListener(OnClick_SoundButton);
+        _musicButton.onClick.AddListener(OnClick_MusicButton);
         _mainMenuButton.onClick.AddListener((() =>
         {
             AudioManager.Instance.Play(SoundType.TransitionSound);
             TransitionManager.Instance.LoadLevel(Consts.GameScenes.MENU_SCENE);
         }));
     }
-    
+
+    private void OnClick_MusicButton()
+    {
+        AudioManager.Instance.Play(SoundType.ButtonClickSound);
+        _isMusicActive = !_isMusicActive;
+        _musicButton.image.sprite = _isMusicActive ? _musicActiveSprite : _musicPassiveSprite;
+        BackgroundMusic.Instance.SetMusicMute(!_isMusicActive);
+    }
+
+    private void OnClick_SoundButton()
+    {
+        AudioManager.Instance.Play(SoundType.ButtonClickSound);
+        _isSoundActive =! _isSoundActive;
+        _soundButton.image.sprite = _isSoundActive ? _soundActiveSprite : _soundPassiveSprite;
+        AudioManager.Instance.SetSoundEffectsMute(!_isSoundActive);
+    }
+
     private void OnClick_SettingsButton()
     {
         GameManager.Instance.ChangeGameState(GameState.Pause);
