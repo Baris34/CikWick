@@ -22,7 +22,7 @@ public class GoldWheatCollectible : MonoBehaviour,ICollectible
         _playerStateUI.PlaySetBoosterUI(_playerStateUI.PlayerBoosterSpeedTransform,_playerBoosterImage,
             _playerStateUI.GoldBoosterWheatImage,_wheatDesignSO.ActiveSprite, _wheatDesignSO.PassiveSprite,
             _wheatDesignSO.ActiveWheatSprite, _wheatDesignSO.PassiveWheatSprite,_wheatDesignSO.ResetDuration);
-        
+        CameraShake.Instance.ShakeCamera(0.5f, 0.5f);
         _playerController.SetMovementSpeed(_wheatDesignSO.IncreaseDecreaseMultiplier, _wheatDesignSO.ResetDuration);
         Destroy(gameObject);
     }

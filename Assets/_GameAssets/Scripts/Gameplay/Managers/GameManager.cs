@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     
     private GameState _currentGameState;
     private int _currentEggCount;
+    private bool _isCatChase;
     private void Awake()
     {
         Instance = this;
@@ -32,8 +33,15 @@ public class GameManager : MonoBehaviour
     }
     private void CatController_OnCatChase()
     {
-        OnGameOver();
-        _playerHealthUI.AnimateDamageForAll();
+        if (!_isCatChase)
+        {
+            OnGameOver();
+            _playerHealthUI.AnimateDamageForAll();
+            CameraShake.Instance.ShakeCamera(1f, 1f,0.2f);
+            _isCatChase = true;
+        }
+        
+
     }
     private void HealthManager_OnGameOver()
     {

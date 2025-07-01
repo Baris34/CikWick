@@ -36,6 +36,7 @@ public class PlayerInteractionController : MonoBehaviour
         {
             damageable.GiveDamage(_playerRigidbody,
                _playerVisualTransform);
+            CameraShake.Instance.ShakeCamera(0.3f, 0.5f);
         }
     }
 }
