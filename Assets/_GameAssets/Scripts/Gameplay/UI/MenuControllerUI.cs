@@ -1,8 +1,6 @@
-using System;
 using _GameAssets.Scripts.Gameplay.Helpers;
-using TMPro;
+using MaskTransitions;
 using UnityEngine;
-using UnityEngine.InputSystem.HID;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -15,7 +13,7 @@ public class MenuControllerUI : MonoBehaviour
     {
         _playButton.onClick.AddListener(() =>
         {
-            SceneManager.LoadScene(Consts.GameScenes.GAME_SCENE);
+            TransitionManager.Instance.LoadLevel(Consts.GameScenes.GAME_SCENE);
         });
         
         _QuitButton.onClick.AddListener(() =>

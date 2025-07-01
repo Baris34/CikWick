@@ -1,5 +1,7 @@
 using System;
+using _GameAssets.Scripts.Gameplay.Helpers;
 using DG.Tweening;
+using MaskTransitions;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -24,6 +26,10 @@ public class SettingsButtonUI : MonoBehaviour
         _settingsPanel.transform.localScale = Vector3.zero;
         _settingsButton.onClick.AddListener(OnClick_SettingsButton);
         _resumeButton.onClick.AddListener(OnClick_ResumeButton);
+        _mainMenuButton.onClick.AddListener((() =>
+        {
+            TransitionManager.Instance.LoadLevel(Consts.GameScenes.MENU_SCENE);
+        }));
     }
     
     private void OnClick_SettingsButton()

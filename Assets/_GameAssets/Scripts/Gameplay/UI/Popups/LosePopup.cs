@@ -1,4 +1,5 @@
 using _GameAssets.Scripts.Gameplay.Helpers;
+using MaskTransitions;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -17,10 +18,14 @@ public class LosePopup : MonoBehaviour
     {
         _timerText.text = _timerUI.GetFinalTime();
         _TryAgainButton.onClick.AddListener(TryAgainButton_OnClick);
+        _mainMenuButton.onClick.AddListener(() =>
+        {
+            TransitionManager.Instance.LoadLevel(Consts.GameScenes.MENU_SCENE);
+        });
     }
 
     private void TryAgainButton_OnClick()
     {
-        SceneManager.LoadScene(Consts.GameScenes.GAME_SCENE);
+        TransitionManager.Instance.LoadLevel(Consts.GameScenes.GAME_SCENE);
     }
 }
