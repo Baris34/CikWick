@@ -21,8 +21,6 @@ public class TimerUI : MonoBehaviour
     private string _finalTime;
     private void Start()
     {
-        RotateTimer();
-        StartTimer();
 
         GameManager.Instance.OnGameStateChanged += GameManager_OnGameStateChanged;
     }
@@ -31,6 +29,10 @@ public class TimerUI : MonoBehaviour
     {
         switch (gameState)
         {
+            case GameState.Play:
+                RotateTimer();
+                StartTimer();
+                break;
             case GameState.Pause:
                 StopTimer();
                 break;
